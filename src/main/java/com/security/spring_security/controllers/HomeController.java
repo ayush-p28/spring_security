@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/home")
 public class HomeController {
     
+    @GetMapping("/login")
+    public ResponseEntity<String> getUserLogin(){
+        return ResponseEntity.ok("Yes, this is login page");
+    }
     @GetMapping("/admin")
     public ResponseEntity<String> getAdminUser(){
         return ResponseEntity.ok("Yes, I am Admin User");

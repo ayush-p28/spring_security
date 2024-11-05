@@ -51,7 +51,15 @@ public class SecurityConfig{
           .requestMatchers("/home/admin").hasRole("ADMIN")
           .requestMatchers("/home/normal").hasRole("NORMAL")
           .anyRequest().authenticated();
-        }).formLogin(Customizer.withDefaults());
+          // }).formLogin(Customizer.withDefaults());
+        }).formLogin(formLogin->{
+            formLogin.loginPage("/home/public");
+            formLogin.loginProcessingUrl("/authenticate");
+            formLogin.successForwardUrl("/home");
+            formLogin.failureForwardUrl("/login?error=true");
+            formLogin.usernameParameter("username");
+            formLogin.usernameParameter("password");
+        });
 
         return http.build();
     }
